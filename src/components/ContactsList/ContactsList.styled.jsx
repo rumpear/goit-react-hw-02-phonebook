@@ -1,14 +1,35 @@
 import styled from 'styled-components';
 
-export const Button = styled.button`
-  /* display: block;
-  width: 150px;
-  height: 50px;
-  padding: 10px 32px;
-  margin-right: 20px;
-  margin-bottom: 20px; */
+export const List = styled.ul`
+  font-size: 17px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+`;
 
+export const Item = styled.li`
+  font-size: 17px;
+  margin-bottom: 10px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  :last-child {
+    margin-bottom: 0;
+  }
+`;
+
+export const Text = styled.p``;
+
+export const Button = styled.button`
   display: inline-flex;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
 
   background-color: #f5f4fa;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
@@ -18,7 +39,7 @@ export const Button = styled.button`
   font-weight: 500;
 
   text-align: center;
-  /* border-radius: 50%; */
+  border-radius: 50%;
   border: none;
 
   line-height: 1.87;
@@ -30,9 +51,5 @@ export const Button = styled.button`
 
   :hover {
     background-color: rgba(77, 77, 77, 0.1);
-  }
-
-  :last-child {
-    margin-right: 0;
   }
 `;

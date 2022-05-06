@@ -1,18 +1,34 @@
 import styled from 'styled-components';
 
+export const Form = styled.form`
+  width: 300px;
+`;
+export const Title = styled.p`
+  font-size: 17px;
+  margin-bottom: 10px;
+`;
+export const Input = styled.input`
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid #eeeeee;
+  width: 100%;
+`;
+
 export const Button = styled.button`
   display: block;
-  width: 150px;
-  height: 50px;
-  padding: 10px 32px;
-  margin-right: 20px;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+
+  margin-top: 5px;
   margin-bottom: 20px;
 
   background-color: #f5f4fa;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
 
   font-family: inherit;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 500;
 
   text-align: center;
@@ -28,9 +44,5 @@ export const Button = styled.button`
 
   :hover {
     background-color: rgba(77, 77, 77, 0.1);
-  }
-
-  :last-child {
-    margin-right: 0;
   }
 `;

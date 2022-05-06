@@ -1,30 +1,35 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { Button } from './ContactsForm.styled';
+import { Form, Title, Input, Button } from './ContactsForm.styled';
+
+const INITIAL_VALUES = {
+  name: '',
+  number: '',
+};
 
 export class ContactsForm extends PureComponent {
-  state = {
-    name: '',
-    number: '',
-  };
+  state = { ...INITIAL_VALUES };
 
-  onInputChange = e => {
+  handleInputChange = e => {
     const { name, value } = e.currentTarget;
     this.setState({ [name]: value });
   };
 
-  onSubmitForm = e => {
+  handleSubmitForm = e => {
+    const { checkDuplicateName, resetForm, state } = this;
+    const { onAddContact } = this.props;
+
     e.preventDefault();
 
-    const findDuplicate = this.checkDuplicateName();
+    const findDuplicate = checkDuplicateName();
     if (findDuplicate) {
-      this.reset();
+      resetForm();
       return;
     }
 
-    this.props.onAddContact(this.state);
-    this.reset();
+    onAddContact && onAddContact(state);
+    resetForm();
   };
 
   checkDuplicateName = () => {
@@ -34,45 +39,45 @@ export class ContactsForm extends PureComponent {
     return findDuplicate;
   };
 
-  reset = () => {
-    this.setState({ name: '', number: '' });
+  resetForm = () => {
+    this.setState({ ...INITIAL_VALUES });
   };
 
   render() {
-    const { onInputChange, onSubmitForm } = this;
+    const { handleInputChange, handleSubmitForm } = this;
     const { name, number } = this.state;
 
     return (
-      <form onSubmit={onSubmitForm}>
-        <p>Name</p>
-        <input
+      <Form onSubmit={handleSubmitForm}>
+        <Title>Name</Title>
+        <Input
           type="text"
           name="name"
-          //   pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           value={name}
-          onChange={onInputChange}
+          onChange={handleInputChange}
         />
-        <p>Number</p>
-        <input
+        <Title>Number</Title>
+        <Input
           type="tel"
           name="number"
-          //   pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           value={number}
-          onChange={onInputChange}
+          onChange={handleInputChange}
         />
         <Button type="submit">Add contact</Button>
-      </form>
+      </Form>
     );
   }
 }
 
 ContactsForm.propTypes = {
-  onSubmitForm: PropTypes.func,
+  handleSubmitForm: PropTypes.func,
+  handleInputChange: PropTypes.func,
   name: PropTypes.string,
-  onInputChange: PropTypes.func,
   number: PropTypes.string,
 };
