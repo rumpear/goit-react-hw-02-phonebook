@@ -1,26 +1,26 @@
 import PropTypes from 'prop-types';
-import { Button } from './ContactsList.styled';
+import { Button, List, Item, Text } from './ContactsList.styled';
 import { VscClose } from 'react-icons/vsc';
 
 export const ContactsList = ({ contacts, onDeleteContact }) => {
   return (
     <div>
-      <ul>
+      <List>
         {contacts.map(({ id, name, number }) => (
-          <li key={id}>
-            <p>{name}</p>
-            <p>{number}</p>
+          <Item key={id}>
+            <Text>{name}</Text>
+            <Text>{number}</Text>
             <Button
               type="button"
               onClick={() => {
                 onDeleteContact(id);
               }}
             >
-              <VscClose size={30} />
+              <VscClose size={20} />
             </Button>
-          </li>
+          </Item>
         ))}
-      </ul>
+      </List>
     </div>
   );
 };

@@ -61,9 +61,9 @@ export class App extends PureComponent {
     const displayedContacts = handleFilterContact();
 
     return (
-      <Section>
+      <Container>
         <Wrapper>
-          <Title>Phonebook</Title>
+          <TitlePhonebook>Phonebook</TitlePhonebook>
           <ContactsForm
             onAddContact={handleAddContact}
             contacts={displayedContacts}
@@ -72,24 +72,25 @@ export class App extends PureComponent {
             value={filter}
             onSearchContact={handleSearchContact}
           />
-          <h2>Contacts</h2>
+          <TitleContacts>Contacts</TitleContacts>
           <ContactsList
             contacts={displayedContacts}
             onDeleteContact={handleDeleteContact}
           />
         </Wrapper>
-      </Section>
+      </Container>
     );
   }
 }
 
+// * styles
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  font-family: 'Poppins';
+  font-family: 'Poppins', 'Roboto';
 
   padding: 40px;
   width: 400px;
@@ -99,7 +100,12 @@ const Wrapper = styled.div`
   box-shadow: rgba(99, 99, 99, 0.322) 0px 2px 8px 0px;
 `;
 
-const Title = styled.h1`
+const TitlePhonebook = styled.h1`
   margin-bottom: 15px;
   font-size: 35px;
+`;
+
+const TitleContacts = styled.h1`
+  margin-bottom: 15px;
+  font-size: 25px;
 `;
