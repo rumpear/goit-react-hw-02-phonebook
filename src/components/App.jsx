@@ -54,17 +54,14 @@ export class App extends PureComponent {
       handleFilterContact,
       handleDeleteContact,
     } = this;
-    const { filter } = this.state;
+    const { filter, contacts } = this.state;
     const displayedContacts = handleFilterContact();
 
     return (
       <Container>
         <Wrapper>
           <TitlePhonebook>Phonebook</TitlePhonebook>
-          <ContactsForm
-            onAddContact={handleAddContact}
-            contacts={displayedContacts}
-          />
+          <ContactsForm onAddContact={handleAddContact} contacts={contacts} />
           <ContactsFilter
             value={filter}
             onSearchContact={handleSearchContact}
