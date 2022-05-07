@@ -28,7 +28,7 @@ export class ContactsForm extends PureComponent {
       return;
     }
 
-    onAddContact && onAddContact(state);
+    onAddContact(state);
     resetForm();
   };
 
