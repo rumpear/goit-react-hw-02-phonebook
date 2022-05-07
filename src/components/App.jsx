@@ -1,13 +1,11 @@
 import { nanoid } from 'nanoid';
-import styled from 'styled-components';
-
 import { PureComponent } from 'react';
 
 import { Container } from './Container';
-import { Section } from './Section';
 import { ContactsFilter } from './ContactsFilter';
 import { ContactsForm } from './ContactsForm';
 import { ContactsList } from './ContactsList';
+import { Wrapper, TitlePhonebook, TitleContacts } from './App.styled';
 
 export class App extends PureComponent {
   state = {
@@ -28,11 +26,10 @@ export class App extends PureComponent {
       number,
     };
 
-    this.setState(({ contacts }) => ({ contacts: [contact, ...contacts] }));
+    this.setState(({ contacts }) => ({ contacts: [...contacts, contact] }));
   };
 
   handleSearchContact = e => {
-    console.log(e.currentTarget.value);
     this.setState({ filter: e.currentTarget.value });
   };
 
@@ -82,30 +79,3 @@ export class App extends PureComponent {
     );
   }
 }
-
-// * styles
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  font-family: 'Poppins', 'Roboto';
-
-  padding: 40px;
-  width: 400px;
-  margin: 100px auto;
-  background-color: rgba(151, 151, 151, 0.1);
-  border-radius: 5px;
-  box-shadow: rgba(99, 99, 99, 0.322) 0px 2px 8px 0px;
-`;
-
-const TitlePhonebook = styled.h1`
-  margin-bottom: 15px;
-  font-size: 35px;
-`;
-
-const TitleContacts = styled.h1`
-  margin-bottom: 15px;
-  font-size: 25px;
-`;

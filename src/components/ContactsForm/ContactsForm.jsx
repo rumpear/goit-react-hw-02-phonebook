@@ -34,8 +34,11 @@ export class ContactsForm extends PureComponent {
 
   checkDuplicateName = () => {
     const { contacts } = this.props;
-    const findDuplicate = contacts.find(({ name }) => name === this.state.name);
-    if (findDuplicate) alert('findDuplicate');
+    const findDuplicate = contacts.find(
+      ({ name }) => name.toLowerCase() === this.state.name.toLowerCase(),
+    );
+    if (findDuplicate)
+      alert('You are trying to enter a name that is already on the phonebook');
     return findDuplicate;
   };
 
@@ -76,8 +79,12 @@ export class ContactsForm extends PureComponent {
 }
 
 ContactsForm.propTypes = {
-  handleSubmitForm: PropTypes.func,
-  handleInputChange: PropTypes.func,
-  name: PropTypes.string,
-  number: PropTypes.string,
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    }),
+  ),
+  onAddContact: PropTypes.func.isRequired,
 };
